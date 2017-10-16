@@ -1,0 +1,20 @@
+참고하면 좋은 자료
+딥러닝 정리 자료 : https://github.com/nmhkahn/deep_learning_tutorial/blob/master/slides/NN.pdf
+튜토리얼 설명    : https://github.com/golbin/TensorFlow-Tutorials
+유투브 강의      : https://www.youtube.com/watch?v=BS6O0zOGX4E&list=PLlMkM4tgfjnLSOjrEJN31gZATbcj_MpUm
+
+※숙제※
+아래에서 1개만 하시면 됩니다.
+
+1. ex1.py의 28 ~ 39 라인 부분 수정하기 (classification_dnn.py와 동일한 내용)
+   네트워크 수정하여 레이어를 많이 쌓는 문제입니다.
+   기본   : 2  -> 10 -> 3
+   레이어 : 2  -> 10 -> 9 -> 8 -> 3 형식으로 수정하기 
+
+2. ex2.py의 26 ~ 34 라인 부분 수정하기 (mnist_dnn.py와 동일한 내용)
+   네트워크 수정하여 레이어를 많이 쌓는 문제입니다.
+   기본 : 784 -> 512 -> 4
+   1)레이어 : 784 -> 512  -> 256 -> 64 -> 32 -> 10
+   2)        784 -> 3000 -> 10
+
+3. mnist_dnn.py 수정하여 Accuracy 98% 이상 나오기 (수정 자유)
