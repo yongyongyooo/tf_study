@@ -64,8 +64,3 @@ def get_label(page, size):
 
     t = np.array(t)
     return t
-
-def predict(sess, img):
-    im = Image.open(img).resize((c_size, c_size))
-    result = sess.run(hypothesis, feed_dict={X: im})
-    print(result)
