@@ -6,16 +6,16 @@ from PIL import Image
 train_path = './convert/'
 test_path = './test/'
 
-data_size = 1000
+data_size = 3000
 c_size = 256
-imgs = os.listdir(train_path)
+imgs = list(filter(lambda x: x != 'Thumbs.db', os.listdir(train_path)))
 random.shuffle(imgs)
 imgs = imgs[:data_size]
 
 def get_test():
     datas = []
-
-    for d in os.listdir(test_path):
+    test_dir = list(filter(lambda x: x != 'Thumbs.db', os.listdir(test_path)))
+    for d in test_dir:
         im = Image.open(test_path + d)
         datas.append(np.array(im))
 
@@ -23,7 +23,7 @@ def get_test():
 
     labels = []
 
-    for d in os.listdir(test_path):
+    for d in test_dir:
         tmp = [0, 0]
         if d.split('.')[0] == 'cat':
             tmp[0] = 1
@@ -64,3 +64,6 @@ def get_label(page, size):
 
     t = np.array(t)
     return t
+
+def get_batch(page, size):
+    return (get_img(page, size), get_label(page, size))
