@@ -6,20 +6,20 @@ from PIL import Image
 train_path = './convert/'
 test_path = './test/'
 
-data_size = 3000
-c_size = 256
+data_size = 1000
+c_size = 128
 imgs = list(filter(lambda x: x != 'Thumbs.db', os.listdir(train_path)))
 random.shuffle(imgs)
 imgs = imgs[:data_size]
+test_dir = list(filter(lambda x: x != 'Thumbs.db', os.listdir(test_path)))
 
 def get_test():
-    datas = []
-    test_dir = list(filter(lambda x: x != 'Thumbs.db', os.listdir(test_path)))
+    datas = []    
     for d in test_dir:
         im = Image.open(test_path + d)
         datas.append(np.array(im))
 
-    datas = np.array(datas).reshape((100, c_size * c_size))
+    datas = np.array(datas).reshape((data_size, c_size * c_size * 3))
 
     labels = []
 
@@ -44,7 +44,7 @@ def get_img(page, size):
         im = Image.open(train_path + d)
         t.append(np.array(im))
 
-    t = np.array(t).reshape((size, c_size * c_size))
+    t = np.array(t).reshape((size, c_size * c_size * 3))
 
     return t
 
