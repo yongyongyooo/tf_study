@@ -6,7 +6,7 @@ from PIL import Image
 train_path = './convert/'
 test_path = './test/'
 
-data_size = 1000
+data_size = 3000
 c_size = 128
 imgs = list(filter(lambda x: x != 'Thumbs.db', os.listdir(train_path)))
 random.shuffle(imgs)
