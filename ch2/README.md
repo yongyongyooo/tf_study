@@ -7,7 +7,7 @@ https://www.kaggle.com/c/dogs-vs-cats/data <br/>
 convet, test 폴더를 만든다<br />
 
 ## 이미지 크기 조절
-python convert_make.py
+python convert_make.py 로 실행 <br/>
 이미지가 너무 크고 다 다르기 때문에 <br/>
 128 * 128 이미지로 변환한다. <br/>
 python conver_make.py 숫자 입력시 train set 크기를 늘릴 수 있다 <br/>
