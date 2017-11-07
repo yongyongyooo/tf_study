@@ -3,8 +3,8 @@ import os
 import numpy as np
 from PIL import Image
 
-train_path = './convert/'
-test_path = './test/'
+train_path = '../ch2/convert/'
+test_path = '../ch2/test/'
 
 data_size = 1000
 c_size = 128
