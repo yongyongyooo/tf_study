@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 import random
 from PIL import Image
-from dutils import get_batch, get_test, c_size, data_size, test_dir, test_path
+from ch2.utils import get_batch, c_size, data_size, test_dir, test_path
 import matplotlib.pyplot as plt
 
 batch_size = 10
@@ -32,6 +32,7 @@ for epoch in range(5):
 
     for page in range(goal_page):
         batch_x, batch_y = get_batch(page, batch_size)
+        batch_x = batch_x.reshape((batch_size, c_size * c_size * 3))
         c, _ = sess.run([cost, optimizer], feed_dict={X: batch_x, Y: batch_y})
         total_cost += c
 
@@ -41,11 +42,25 @@ for epoch in range(5):
     print('epoch :', epoch, 'cost : ', total_cost / goal_page)
 
 correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(Y, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+value = 0
+for test_x in test_dir:
+    test_img = Image.open(test_path + test_x)
+    temp_img = np.array(test_img).reshape((1, c_size * c_size * 3))
 
-test_data, test_label = get_test()
+    test_label = test_x.split('.')[0]
+    class_map = [[0, 0]]
 
-print('Accuracy:', sess.run(accuracy, feed_dict={X: test_data, Y: test_label}))
+    if test_label == 'cat':
+        class_map[0][0] = 1
+    else:
+        class_map[0][1] = 1
+
+    result = sess.run(correct_prediction, feed_dict={X: temp_img, Y: np.array(class_map)})[0]
+
+    if result:
+        value += 1
+
+print('accuracy : ', value / len(test_dir))
 
 while True:
     r = random.randint(0, len(test_dir) - 1)
